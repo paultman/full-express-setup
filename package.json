@@ -4,7 +4,8 @@
   "description": "This is a simple express project configured to use eslint with airbnb and prettier rules.  Meant to be used with VSC, eslint, and prettier extensions installed",
   "main": "",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start:dev": "NODE_ENV=development APP_ENV=dev node server.js",
+    "start:prod": "NODE_ENV=production APP_ENV=prod node server.js"
   },
   "keywords": [],
   "author": "",
@@ -16,5 +17,8 @@
     "eslint-plugin-import": "^2.23.4",
     "eslint-plugin-prettier": "^3.4.0",
     "prettier": "^2.3.2"
+  },
+  "dependencies": {
+    "express": "^4.17.2"
   }
 }
