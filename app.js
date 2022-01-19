@@ -4,7 +4,7 @@ const morgan = require('morgan');
 const app = express();
 app.locals.projDir = __dirname;
 
-app.init = (config, logger) => {
+app.init = (config, logger, db) => {
   app.use(
     morgan('tiny', {
       stream: {

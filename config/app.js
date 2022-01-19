@@ -9,7 +9,7 @@ const dev = {
   db: {
     host: 'localhost',
     port: 27017,
-    name: 'db',
+    name: 'fesDB',
     username: process.env.db_username || 'admin',
     password: process.env.db_password || 'password',
   },
@@ -26,7 +26,7 @@ const prod = {
   db: {
     host: '54.82.34.81',
     port: 27018,
-    name: 'prodDB',
+    name: 'fesDB',
     username: process.env.db_username,
     password: process.env.db_password,
   },
