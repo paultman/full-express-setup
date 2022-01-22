@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p><a href="/home.html">Go to protected route: home</a></p>
+    <p><a href="/logout">Logout, delete client state token</a></p>
+    <form action="" id="multiAuth" method="post">
+      Email: <input type="text" name="email" /> Password: <input type="text" name="password" />
+      <br />
+      <input type="radio" name="action" value="register" /> Register
+      <input type="radio" name="action" value="login" checked="true" /> Login
+      <button id="processForm" type="submit">submit</button>
+    </form>
+    <script type="text/javascript">
+      const handleSubmit = async function (e) {
+        e.preventDefault();
+        const form = event.currentTarget;
+        const formData = new FormData(form);
+        const url = '/' + formData.get('action');
+        if (formData.get('email').trim() === '' || formData.get('password').trim() === '') {
+          alert('please fill in all fields');
+          return;
+        }
+        fetch(url, {
+          method: 'post',
+          redirect: 'follow',
+          body: JSON.stringify(Object.fromEntries(formData.entries())),
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }).then((resp) => {
+          if (resp.redirected) window.location.href = resp.url;
+        });
+      };
+      const multiAuthForm = document.getElementById('multiAuth');
+      multiAuthForm.addEventListener('submit', handleSubmit);
+    </script>
+  </body>
+</html>
