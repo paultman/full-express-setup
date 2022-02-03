@@ -119,3 +119,6 @@ dist
 
 # used by Jest
 globalConfig.json
+
+# do not commit generated JSDoc output
+docs/
