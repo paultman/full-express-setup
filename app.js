@@ -1,6 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const cookieSession = require('cookie-session');
+const path = require('path');
 const userRoutes = require('./controllers/users');
 
 const app = express();
@@ -31,8 +32,7 @@ app.init = (config, logger, db) => {
   const checkAuth = (req, res, next) => {
     if (!(req.session && req.session.ref)) {
       if (req.headers['x-requested-with']) {
-        // if request is an ajax request send json back
-        res.status(302).send({ url: '/' });
+        res.status(302).send({ url: '/' }); // if request is an ajax request send json back
       } else {
         res.redirect('/'); // do normal 302 redirect
       }
@@ -44,14 +44,16 @@ app.init = (config, logger, db) => {
 
   app.get('/', (req, res) => {
     logger.info(`running in ${config.app.env} environment`);
-    res.sendFile(`${__dirname}/client/index.html`);
+    res.sendFile(`${__dirname}/dist/index.html`);
   });
   app.get('/home.html', checkAuth, (req, res) => {
-    res.sendFile(`${__dirname}/client/home.html`);
+    res.sendFile(`${__dirname}/dist/home.html`);
   });
 
   app.post('/login', userRoutes.login);
   app.post('/register', userRoutes.register);
   app.get('/logout', userRoutes.logout);
+
+  app.use(express.static(path.join(__dirname, '/dist/')));
 };
 module.exports = app;

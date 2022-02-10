@@ -4,9 +4,59 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Home</title>
+    <!-- <link rel="stylesheet" href="styles/home.min.css" /> -->
+    <style>
+      body {
+        display: grid;
+        height: 100vh;
+        grid-template: auto 1fr auto / auto 1fr auto;
+      }
+
+      header {
+        background: lightpink;
+        padding: 2rem;
+        grid-column: 1 / 4;
+      }
+
+      .left-sidebar {
+        background: lightblue;
+        grid-column: 1 / 2;
+      }
+
+      main {
+        background: coral;
+        grid-column: 2 / 3;
+      }
+
+      .right-sidebar {
+        background: yellow;
+        grid-column: 3 / 4;
+      }
+
+      footer {
+        background: wheat;
+        padding: 2rem;
+        text-align: center;
+        grid-column: 1 / 4;
+      }
+
+      body {
+        font-family: system-ui, sans-serif;
+      }
+
+      .left-sidebar,
+      .right-sidebar {
+        padding: 1rem;
+      }
+    </style>
   </head>
   <body>
-    <h1>protected user home dashboard</h1>
+    <header><h1 contenteditable>Header</h1></header>
+    <div class="left-sidebar" contenteditable>Left Sidebar</div>
+    <main>go back to <a href="index.html">index</a></main>
+    <div class="right-sidebar" contenteditable>Right Sidebar</div>
+    <footer contenteditable>Footer Content 2022</footer>
+    <!-- <script src="./scripts/home.min.js"></script> -->
   </body>
 </html>
